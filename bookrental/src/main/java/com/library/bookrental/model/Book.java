@@ -17,7 +17,7 @@ public class Book {
     @ManyToOne
     private Category category;
 
-    // GETTERS & SETTERS
+
 
     public Long getId() {
         return id;
