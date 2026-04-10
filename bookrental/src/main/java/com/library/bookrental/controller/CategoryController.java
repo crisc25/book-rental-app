@@ -4,7 +4,7 @@ import com.library.bookrental.model.Category;
 import com.library.bookrental.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
@@ -15,12 +15,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public List<Category> getCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<Category>> getCategories() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
     @PostMapping
-    public Category addCategory(@RequestBody Category category) {
-        return categoryService.saveCategory(category);
+    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
+        return ResponseEntity.status(201).body(categoryService.saveCategory(category));
     }
 }

@@ -4,6 +4,7 @@ import com.library.bookrental.model.User;
 import com.library.bookrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 @RestController
@@ -13,12 +14,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>>getUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public  ResponseEntity<User> addUser(@RequestBody User user) {
+        return ResponseEntity.status(201).body(userService.saveUser(user));
     }
 }

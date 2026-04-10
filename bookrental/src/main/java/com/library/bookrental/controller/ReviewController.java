@@ -5,7 +5,7 @@ import com.library.bookrental.model.Review;
 import com.library.bookrental.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
@@ -16,12 +16,12 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping
-    public List<Review> getReviews() {
-        return reviewService.getAllReviews();
+    public ResponseEntity<List<Review>> getReviews() {
+        return ResponseEntity.ok(reviewService.getAllReviews());
     }
 
     @PostMapping
-    public Review addReview(@RequestBody Review review) {
-        return reviewService.saveReview(review);
+    public ResponseEntity<Review> addReview(@RequestBody Review review) {
+        return ResponseEntity.status(201).body(reviewService.saveReview(review));
     }
 }

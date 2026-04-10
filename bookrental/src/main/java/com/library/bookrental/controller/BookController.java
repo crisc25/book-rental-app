@@ -4,6 +4,7 @@ import com.library.bookrental.model.Book;
 import com.library.bookrental.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -13,8 +14,14 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+
     @GetMapping
-    public List<Book> getBooks() {
-        return bookService.getAllBooks();
+    public ResponseEntity<List<Book>> getBooks() {
+        return ResponseEntity.ok(bookService.getAllBooks());
     }
+    @PostMapping
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
+        return ResponseEntity.status(201).body(bookService.saveBook(book));
+    }
+
 }
