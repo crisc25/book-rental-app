@@ -19,6 +19,15 @@ public class Rental {
     @ManyToOne
     private Book book;
 
+    public Rental() {}
+
+    public Rental(LocalDate rentalDate, LocalDate returnDate, User user, Book book) {
+        this.rentalDate = rentalDate;
+        this.returnDate = returnDate;
+        this.user = user;
+        this.book = book;
+    }
+
     // getters & setters
     public Long getId() { return id; }
 

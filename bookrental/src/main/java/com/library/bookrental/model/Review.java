@@ -15,6 +15,13 @@ public class Review {
     @ManyToOne
     private Book book;
 
+    public Review() {}
+
+    public Review(int rating, String comment, Book book) {
+        this.rating = rating;
+        this.comment = comment;
+        this.book = book;
+    }
     // getters & setters
     public Long getId() { return id; }
 

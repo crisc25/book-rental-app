@@ -1,4 +1,3 @@
-
 package com.library.bookrental.model;
 
 import jakarta.persistence.*;
@@ -17,7 +16,15 @@ public class Book {
     @ManyToOne
     private Category category;
 
+    public Book() {}
 
+    public Book(String title, String author, int year, boolean available, Category category) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.available = available;
+        this.category = category;
+    }
 
     public Long getId() {
         return id;
@@ -54,4 +61,7 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
+
 }
